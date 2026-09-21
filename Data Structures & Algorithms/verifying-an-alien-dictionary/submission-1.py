@@ -1,0 +1,16 @@
+class Solution:
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        # hashmap stores the character along with its index for easy lookup
+        orderindex = {c:i for i,c in enumerate(order)}
+        for i in range(1,len(words)):
+            w1, w2 = words[i-1], words[i]
+            for j in range(len(w1)):
+                if j == len(w2):
+                    return False
+                if w1[j] != w2[j]:
+                    if orderindex[w1[j]] > orderindex[w2[j]]:
+                        return False
+                    else:
+                        break
+        return True
+        
